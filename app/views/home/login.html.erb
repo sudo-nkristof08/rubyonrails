@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Login</title>
+  </head>
+
+  <body>
+    <div class="container text-center">
+        <br>
+        <br>
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <form action="">
+            <div class="row justify-content-center">                
+                <div class="col-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Username</span>
+                        </div>
+                        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-center">                
+                <div class="col-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Password</span>
+                        </div>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <%= link_to "Forgot password?", "#" %>
+            </div>
+            
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <%= link_to "Sign Up", "/home/signup", class: "btn btn-lg btn-secondary" %>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+        </form>
+    </div>
+  </body>
+</html>

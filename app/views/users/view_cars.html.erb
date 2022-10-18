@@ -1,0 +1,62 @@
+<%= render "layouts/menu" %>
+
+
+
+<div class="text-center">
+  <!-- Title -->
+  <br>
+  <b><h1>My Cars</h1></b>
+</div>
+
+<br>
+
+<div class="container container-border text-center">
+  
+  <!-- Top row -->
+  <div class="row row-border top-row">
+    <div class="col-3">
+        <h2>Image</h2>
+    </div>
+    <div class="col-3 ">
+        <h2>Carname</h2>
+    </div>
+    <div class="col-2">
+        <h2>Starting Price</h2>
+    </div>
+    <div class="col-3">
+      <h2>Current Price</h2>
+    </div>
+    <div class="col-1">
+        &nbsp;
+    </div>
+  </div>
+
+	<% @cars.each do |car| %>
+		
+	  <div class="row row-border data-row">
+	    <div class="col-3 data-column">
+		<%= image_tag car.image, class: "img-thumbnail top-space" %>
+	    </div>
+	    <div class="col-3 data-column">
+		<h2><%= car.brand %> <%= car.model %></h2>
+	    </div>
+	    <div class="col-2 data-column">
+		<h2><%= car.starting_price %>$</h2>
+	    </div>
+	    <div class="col-3 data-column">
+	      <h2>-</h2>
+	    </div>
+	    <div class="col-1 data-column">
+	      <%= link_to "Edit", edit_car_path(car), class: "btn btn-info" %>
+	      <%= button_to "Delete", car, method: :delete, class: "btn btn-danger top-space" %>
+	    </div>
+	  </div>	
+		
+	<% end %>
+
+  
+</div>
+
+
+
+

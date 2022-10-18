@@ -1,0 +1,112 @@
+<%= stylesheet_link_tag "application.css" %>
+<nav class="navbar navbar-expand-lg navbar-light navbar-blueish">
+	<div class="container-fluid">
+	  <a class="navbar-brand" href="">Buy And Sell Cars </a>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	      <li class="nav-item">
+		<%= link_to "Home", cars_path, class: "nav-link active" %>
+	      </li>
+	      <li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  Profile
+		</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		  <a class="dropdown-item" href="car.html">My Cars</a>
+		  <a class="dropdown-item" href="bid.html">My Bids</a>
+		  <div class="dropdown-divider"></div>
+		  <%= link_to "Upload Car", new_car_path, class: "dropdown-item" %>
+		  <%= link_to "Edit Profile", edit_user_path(1), class: "dropdown-item" %>
+		</div>
+	      </li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+	      <li><%= link_to "Logout", "/home/login" %></li>
+	      
+	  </ul>
+	  </div>
+	</div>
+</nav>
+<%= form_with(model: car) do |form| %>
+  <% if car.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+      <ul>
+        <% car.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<br>
+  <div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+          <h1>Upload Car</h1>
+        </div>
+        <div class="card-body">
+                <input id="car-image-upload" type="file" id="car-images" name="car-images[]" multiple>
+                <br><br>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <%= form.label :brand, class: "input-group-text" %>
+                            </div>
+                            <%= form.text_field :brand, class: "form-control" %>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <%= form.label :model, class: "input-group-text" %>
+                            </div>
+                            <%= form.text_field :model, class: "form-control" %>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-4">
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                              <%= form.label :BHP, class: "input-group-text" %>
+                          </div>
+                          <%= form.number_field :BHP, class: "form-control" %>
+                      </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-4">
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                              <%= form.label :mileage, class: "input-group-text" %>
+                          </div>
+                          <%= form.number_field :mileage, class: "form-control" %>
+                      </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <%= form.label :starting_price, class: "input-group-text" %>
+                            </div>
+                            <%= form.number_field :starting_price, class: "form-control" %>
+                        </div>
+                    </div>
+                </div>
+    	  <%= form.submit class:"btn btn-primary"	 %>
+        </div>
+      </div>
+</div>
+  
+
+  
+<% end %>

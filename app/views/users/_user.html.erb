@@ -1,0 +1,63 @@
+<div id="<%= dom_id user %>">
+  
+  
+  
+	<div class="text-center">
+		<b><h1><%= user.name %>'s Cars</h1></b>
+		<%= image_tag user.image, class: "user_carpage_profile-img" %>
+	</div>
+	
+	<div class="table-responsive"> 
+      <div class="container container-border text-center">
+          
+          <!-- Top row -->
+          <div class="row top-row row-border">
+              	<div class="col-2">
+            		<h2>Image</h2>
+          	</div>
+          	<div class="col-4">
+			<h2>Car name</h2>
+		</div>
+		<div class="col-4">
+			<h2>Current Price</h2>
+		</div>
+		<div class="col-2">
+			&nbsp;
+		</div>
+          </div>
+
+	<div id="cars">
+		<% @cars.each do |car| %>
+		    
+			<div class="row row-border data-row">
+				<div class="col-2 vert-center">
+					<%= link_to image_tag(car.image, class: "img-thumbnail"), "#", data: {toggle: 'modal', target: '#Car'+car.id.to_s } %>
+				</div>
+				<div class="col-4 vert-center align-middle">
+					<h2 class="data-column"><%= car.brand %> <%= car.model %></h2>
+				</div>
+				<div class="col-4 vert-center align-middle">
+					<h2 class="data-column"><%= car.starting_price %>$</h2>
+				</div>
+				<div class="col-2 vert-center">
+					<%= link_to "Bid", car, class: "btn btn-success btn-data-row" %>
+				</div>
+			</div>
+			
+			<div id="Car<%= car.id %>" class="modal fade" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-width-fix">
+					<div class="modal-content">
+						<div class="modal-body">
+							<%= image_tag car.image, class: "img-fluid" %>
+						</div>
+					</div>
+				</div>
+			</div>
+		    
+  		<% end %>
+	</div>
+
+      </div>
+    </div>	
+	
+</div>

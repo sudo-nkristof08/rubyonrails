@@ -1,0 +1,62 @@
+<%= render "layouts/menu" %>
+
+<p style="color: green"><%= notice %></p>
+
+<div class="container">
+            <br>
+            <div class="card text-center">
+                <div class="card-header">
+                  <h1><%= @car.brand %> <%= @car.model %></h1>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="row justify-content-center">
+                            <%= image_tag @car.image, class: "img-fluid" %>
+                        </div>
+                        <br>
+                        <center>
+                            <table class="table table-bordered" style="width: 1%; white-space: nowrap;">
+                                <tr>
+                                    <td>Mileage</td>
+                                    <td><%= @car.mileage %></td>
+                                </tr>
+                            </table>
+                        </center>
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                  Auction ends in x days
+                </div>
+            </div>
+
+            <br>
+
+            <!-- User input, bidding -->
+            <div class="row justify-content-center">
+                <div class="col-2 d-flex justify-content-center no-break">
+                    <h3>My bid: </h3>&nbsp;
+                    <input type="number" min="1" style="text-align: right;">
+                    <h3>$</h3>
+                    &nbsp;
+                    <button type="button" class="btn btn-success">Bid</button>
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Other users bids table -->
+            <div class="row justify-content-center">
+                <table class="table table-bordered">
+                    <tr style="text-align: center;">
+                        <th>Name</th>
+                        <th>Picture</th>
+                        <th>Bid</th>
+                    </tr>
+                    <% @bids.each do |bid| %>
+			    <%= render bid %>
+		   <% end %>
+                </table>
+            </div>
+
+        </div>
+

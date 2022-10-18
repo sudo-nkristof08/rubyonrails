@@ -1,15 +1,114 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+body{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.h2, h2{
+    font-size: calc(0.825rem + .9vw);
+}
+
+.btn-data-row{
+    position:relative;
+    right: 15px;
+}
+
+@media(max-width: 768px){ 
+    .btn-data-row{
+        padding: 0.5rem 0.75rem;
+        font-size : 0.5rem;
+    }
+}
+
+@media(max-width: 990px) and (min-width: 768px){
+    .btn-data-row{
+        padding: 0.75rem 1rem;
+        font-size : 0.70rem;
+    }
+}
+
+.navbar-blueish{
+    background-color: lightskyblue;
+}
+
+.modal-width-fix{ 
+    max-width: 800px;
+}
+
+.col-sm{
+    background-color: lightsteelblue;
+    border: 1px solid black;
+
+}
+
+.seller-profile-pic{
+    width: 50%;
+    /* margin: auto; */
+    margin-top: 10%;
+    margin-bottom: 10%;
+    border: 3px solid black;
+    border-radius: 1px;
+}
+
+.bid-btn{
+    margin-top: 20%;
+}
+
+.data-text {
+    margin-top: 15%;
+}
+
+.top-row{
+    background-color: lightskyblue;
+}
+
+.data-column{
+    margin: auto;
+}
+
+.data-row{
+    background-color: lightsteelblue;
+}
+
+.vert-center{
+    margin: auto;    
+    display: block;
+}
+
+.profile-picture-edit{
+    width: 15%;
+    margin-bottom: 2em;
+}
+
+.no-break{
+    white-space: nowrap;
+}
+
+.container-border{
+    border: 1px solid black;
+}
+
+.row-border{
+    border-bottom: 1px solid black;
+}
+
+.top-space{
+    margin-top:10px;
+}
+
+.user_carpage_profile-img{
+    padding: .25rem;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#profile-pic{
+    cursor:pointer;
+}
+
+
+
+

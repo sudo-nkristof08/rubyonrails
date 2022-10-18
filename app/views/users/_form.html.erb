@@ -1,0 +1,43 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<br><br>
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+          <h1>Edit Profile</h1>
+        </div>
+        <div class="card-body">
+            <br>
+                <%= image_tag user.image, class: "rounded-circle profile-picture-edit" %>
+                
+                <input id="profile-picture-upload" hidden="true" type="file">
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <%= form.label :name, class:"input-group-text" %>
+                            </div>
+                            <%= form.text_field :name, class:"form-control" %>
+                        </div>
+                    </div>
+                </div>
+          <%= form.submit class:"btn btn-primary" %>
+        </div>
+        <div class="card-footer">
+        </div>
+      </div>
+</div>  
+  
+<% end %>

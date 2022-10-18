@@ -1,0 +1,46 @@
+<%= render "layouts/menu" %>
+<p style="color: green"><%= notice %></p>
+
+<br>
+    <!-- Title -->
+    <div class="text-center">
+      <b><h1>Current Cars</h1></b>
+    </div>
+
+<br><br>
+    <div class="table-responsive"> 
+      <div class="container container-border text-center">
+          
+          <!-- Top row -->
+          <div class="row top-row row-border">
+              <div class="col-2">
+                <h2>Image</h2>
+              </div>
+              <div class="col-2">
+                <h2>Seller</h2>
+              </div>
+              <div class="col-4">
+                <h2>Car name</h2>
+              </div>
+              <div class="col-3">
+                <h2>Current Price</h2>
+              </div>
+              <div class="col-1">
+                  &nbsp;
+              </div>
+          </div>
+
+	<div id="cars">
+		<% @cars.each do |car| %>
+		    <%= render car %>
+  		<% end %>
+	</div>
+
+      </div>
+    </div>
+
+
+
+
+
+
