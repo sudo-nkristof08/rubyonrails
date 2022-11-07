@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
+  
+  devise_for :users
+  devise_scope :user do
+  	get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+  
+  resources :users 
   resources :bids
   resources :cars
-  resources :users
+
   
   get 'users/:id/bids', to: 'users#view_bids'
   get 'users/:id/cars', to: 'users#view_cars'
   
-  get 'home/login'
-  get 'home/signup'
   
-  root "home#login"
+  root "cars#index"
   
   
   

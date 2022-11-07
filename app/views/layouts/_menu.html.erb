@@ -15,8 +15,8 @@
                   Profile
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to "My Cars", "/users/1/cars/", class: "dropdown-item" %>
-		  <%= link_to "My Bids", "/users/1/bids/", class: "dropdown-item" %>
+                  <%= link_to "My Cars", "/users/"+current_user.id.to_s+"/cars/", class: "dropdown-item" %>
+		  <%= link_to "My Bids", "/users/"+current_user.id.to_s+"/bids/", class: "dropdown-item" %>
                   <div class="dropdown-divider"></div>
                   <%= link_to "Upload Car", new_car_path, class: "dropdown-item" %>
                   <%= link_to "Edit Profile", edit_user_path(1), class: "dropdown-item" %>
@@ -24,7 +24,7 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "Logout", "/home/login" %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, :method =>  :delete%></li>
               
           </ul>
           </div>

@@ -3,7 +3,10 @@ class CarsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
+    #@cars = Car.all
+    #p @cars.length
+    @cars = Car.where.not(user_id: current_user.id)
+    
   end
 
   # GET /cars/1 or /cars/1.json

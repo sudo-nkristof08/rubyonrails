@@ -1,10 +1,10 @@
 <div id="<%= dom_id user %>">
   
-  
-  
 	<div class="text-center">
 		<b><h1><%= user.name %>'s Cars</h1></b>
-		<%= image_tag user.image, class: "user_carpage_profile-img" %>
+		<% if !user.image.nil?  %>
+			<%= image_tag user.image, class: "user_carpage_profile-img" %>
+		<% end %>
 	</div>
 	
 	<div class="table-responsive"> 
