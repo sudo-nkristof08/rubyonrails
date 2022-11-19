@@ -2,9 +2,13 @@
   
 	<div class="text-center">
 		<b><h1><%= user.name %>'s Cars</h1></b>
-		<% if !user.image.nil?  %>
+		<!-- seed miatt -->
+		<% if user.avatar.attached? %>
+			<%= image_tag url_for(user.avatar), class: "user_carpage_profile-img" %>
+		<% else %>
 			<%= image_tag user.image, class: "user_carpage_profile-img" %>
 		<% end %>
+		
 	</div>
 	
 	<div class="table-responsive"> 
@@ -31,7 +35,15 @@
 		    
 			<div class="row row-border data-row">
 				<div class="col-2 vert-center">
-					<%= link_to image_tag(car.image, class: "img-thumbnail"), "#", data: {toggle: 'modal', target: '#Car'+car.id.to_s } %>
+					<!-- seed miatt -->
+					<% if car.picture.attached? %>
+						<%= link_to image_tag(url_for(car.picture), class: "img-thumbnail top-space"), "#", data: {toggle: 'modal', target: '#Car'+car.id.to_s } %>
+					<% else %>
+						<%= link_to image_tag(car.image, class: "img-thumbnail top-space"), "#", data: {toggle: 'modal', target: '#Car'+car.id.to_s } %>		
+					<% end %>
+					
+					
+					
 				</div>
 				<div class="col-4 vert-center align-middle">
 					<h2 class="data-column"><%= car.brand %> <%= car.model %></h2>
@@ -48,7 +60,12 @@
 				<div class="modal-dialog modal-width-fix">
 					<div class="modal-content">
 						<div class="modal-body">
+						<!-- seed miatt -->
+						<% if car.picture.attached? %>
+							<%= image_tag url_for(car.picture), class: "img-fluid" %>
+						<% else %>
 							<%= image_tag car.image, class: "img-fluid" %>
+						<% end %>
 						</div>
 					</div>
 				</div>

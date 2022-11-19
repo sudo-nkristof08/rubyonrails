@@ -4,10 +4,22 @@
   <!-- Actual cars row -->
           <div class="row data-row row-border">
               <div class="col-2 data-column">
-                  <%= link_to image_tag(car.image, class: "img-thumbnail"), "#", data: {toggle: 'modal', target: '#Car'+car.id.to_s } %>
+                  
+                  <% if car.picture.attached? %>
+				<%= link_to image_tag(url_for(car.picture), class: "img-thumbnail"), "#" , data: {toggle: 'modal', target: '#Car'+car.id.to_s } %>
+			<% else %>
+				<%= link_to image_tag(car.image, class: "img-thumbnail top-space"), "#" , data: {toggle: 'modal', target: '#Car'+car.id.to_s } %>		
+			<% end %>
+                  
               </div>
               <div class="col-2 data-column">
-                <%= link_to image_tag("placeholder.jpeg", class: "img-thumbnail"), "/users/"+car.user.id.to_s %>
+                
+                <% if car.user.avatar.attached? %>
+			<%= link_to image_tag( url_for(car.user.avatar), class: "user_carpage_profile-img"), "/users/"+car.user.id.to_s %>
+		<% else %>
+			<%= link_to image_tag(car.user.image, class: "user_carpage_profile-img"), "/users/"+car.user.id.to_s %>
+		<% end %>
+                
               </div>
               <div class="col-4 data-column align-middle">
                    <h2><%= car.brand %> <%= car.model %></h2>
@@ -25,7 +37,14 @@
               <div class="modal-dialog modal-width-fix">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <%= image_tag car.image, class: "img-fluid" %>
+                        
+                        <% if car.picture.attached? %>
+				<%= image_tag url_for(car.picture), class: "img-fluid" %>
+			<% else %>
+				<%= image_tag car.image, class: "img-fluid" %>		
+			<% end %>
+                        
+                        
                     </div>
                 </div>
               </div>

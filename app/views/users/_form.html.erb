@@ -20,7 +20,12 @@
         </div>
         <div class="card-body">
             <br>
-                <%= image_tag user.image, class: "rounded-circle profile-picture-edit" %>
+                
+		<% if user.avatar.attached? %>
+                	<%= image_tag url_for(user.avatar), class: "rounded-circle profile-picture-edit" %>
+                <% else %>
+                	<%= image_tag user.image, class: "rounded-circle profile-picture-edit" %>
+                <% end %>
                 
                 <input id="profile-picture-upload" hidden="true" type="file">
                 <div class="row justify-content-center">
@@ -32,6 +37,10 @@
                             <%= form.text_field :name, class:"form-control" %>
                         </div>
                     </div>
+                    
+                    <%= form.label :avatar  %>
+                    <%= form.file_field :avatar %>
+                    
                 </div>
           <%= form.submit class:"btn btn-primary" %>
         </div>

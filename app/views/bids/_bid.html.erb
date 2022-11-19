@@ -2,7 +2,13 @@
 
  <tr>
 	<td class="align-middle text-center col-4"><h1><%= bid.user.name %></h1></td>
-	<td class="align-middle text-center col-4"><%= image_tag bid.user.image, class: "img-thumbnail" %></td>
+	<td class="align-middle text-center col-4">		
+		<% if bid.user.avatar.attached? %>
+			<%= image_tag url_for(bid.user.avatar), class: "img-thumbnail" %>
+		<% else %>
+			<%= image_tag bid.user.image, class: "img-thumbnail" %>
+		<% end %>
+	</td>
 	<td class="align-middle text-center"><h1><%= bid.amount %> $</h1></td>
  </tr>
 

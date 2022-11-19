@@ -17,9 +17,6 @@
     <div class="col-3 ">
         <h2>Carname</h2>
     </div>
-    <div class="col-2">
-        <h2>Starting Price</h2>
-    </div>
     <div class="col-3">
       <h2>Current Price</h2>
     </div>
@@ -32,20 +29,27 @@
 		
 	  <div class="row row-border data-row">
 	    <div class="col-3 data-column">
-		<%= image_tag car.image, class: "img-thumbnail top-space" %>
+		
+		
+		<% if car.picture.attached? %>
+				<%= image_tag url_for(car.picture), class: "img-thumbnail top-space" %>
+			<% else %>
+				<%= image_tag car.image, class: "img-thumbnail top-space" %>		
+			<% end %>
+		
 	    </div>
 	    <div class="col-3 data-column">
-		<h2><%= car.brand %> <%= car.model %></h2>
+		<h2><%= car.brand %> <%= car.model %>
+		</h2>
 	    </div>
-	    <div class="col-2 data-column">
+	    <div class="col-3 data-column">
 		<h2><%= car.starting_price %>$</h2>
 	    </div>
 	    <div class="col-3 data-column">
-	      <h2>-</h2>
-	    </div>
-	    <div class="col-1 data-column">
+	      <% if not @carsArray[car] %>
 	      <%= link_to "Edit", edit_car_path(car), class: "btn btn-info" %>
 	      <%= button_to "Delete", car, method: :delete, class: "btn btn-danger top-space" %>
+	      <% end %>
 	    </div>
 	  </div>	
 		

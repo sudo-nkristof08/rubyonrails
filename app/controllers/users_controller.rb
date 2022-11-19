@@ -8,19 +8,32 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    @cars = Car.where(user_id: @user.id)  
+    @cars = Car.where(user_id: @user.id)
   end
   
   # GET /users/1/bids
-  def view_bids
-  	@user = User.find(params[:id])
-  	@bids = Bid.where(user_id: @user.id)  
+  # Current user elotti implementacio
+  def view_bids  	
+  	@user = User.find(current_user.id) 
+  	@bids = Bid.where(user_id: current_user.id)  
   end
   
   # GET /users/1/cars
   def view_cars
-  	@user = User.find(params[:id])
-  	@cars = Car.where(user_id: @user.id)  
+  	#p current_user.id
+  	@user = User.find(current_user.id) 
+  	@cars = Car.where(user_id: current_user.id)
+  	
+  	@carsArray = Hash.new(0)
+  	
+  	@cars.each do |car|
+    		 hasBid = true
+    		 if(Bid.where(car_id: car.id).empty?)
+    		 	hasBid = false
+    		 end
+    		 @carsArray[car] = hasBid
+    	end
+  	  
   end
 
   # GET /users/new
@@ -30,6 +43,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  	#@user.avatar.attach(params[:avatar])
   end
 
   # POST /users or /users.json
@@ -73,7 +87,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      	@user = User.find(params[:id])
+      	@user = User.find(current_user.id)
       	if @user.image.nil?
       		@user.image = "placeholder.jpeg"
       	end
@@ -81,6 +95,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :password, :image)
+      params.require(:user).permit(:name, :password, :image, :avatar)
     end
 end

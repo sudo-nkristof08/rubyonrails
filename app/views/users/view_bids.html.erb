@@ -30,7 +30,12 @@
 			    
 			    <div class="row data-row">
 				<div class="col-3 data-column">
-				    <%= image_tag bid.car.image, class: "img-thumbnail" %>
+				    
+				    <% if bid.car.picture.attached? %>
+					<%= image_tag url_for(bid.car.picture), class: "img-thumbnail" %>
+				    <% else %>
+					<%= image_tag bid.car.image, class: "img-thumbnail" %>		
+				    <% end %>
 				</div>
 				<div class="col-3 data-column">
 				    <%= link_to "#{bid.car.brand} #{bid.car.model}", bid.car, class: "dropdown-item" %>
@@ -42,7 +47,7 @@
 				</div>
 				<div class="col-3 data-column">
 				    <div>
-					<h2><%= bid.amount %>$</h2>
+					<h2><%= bid.car.starting_price %>$</h2>
 				    </div>
 				</div>
 			    </div>

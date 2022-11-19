@@ -11,22 +11,59 @@ class CarsController < ApplicationController
 
   # GET /cars/1 or /cars/1.json
   def show
-    @bids = Bid.where(car_id: @car.id)  
+    @bids = Bid.where(car_id: @car.id).order("amount DESC")
   end
 
   # GET /cars/new
   def new
-    @car = Car.new
+    #@car.user_id = current_user.id
+    @car = Car.new()
   end
 
   # GET /cars/1/edit
   def edit
+  
+  	@car = Car.where(id: params[:id]).first
+  	if(@car.user_id == current_user.id)
+  		redirect_to root_path
+  	end
+  	
+  end
+  
+  def create_bid
+  	
+  	#p params[:amount]
+  	
+  	url = "/cars/"+params[:car_id]
+  	@car = Car.where(id: params[:car_id]).first
+  	
+  	if(@car.starting_price < params[:amount].to_i)
+  		respond_to do |format|
+  			format.html { redirect_to url }
+  		end
+  	end
+  	
+  		
+  	@bid = Bid.new(
+  		user_id: current_user.id ,
+  		car_id: params[:car_id],
+  		amount: params[:amount]
+  	)
+  	
+  	@car.starting_price = params[:amount]
+  	@car.save()
+  	
+  	respond_to do |format|
+	  	if @bid.save()
+	  		redirect_to url, notice: "Bid was successfully created." && return
+	  	end
+  	end
   end
 
   # POST /cars or /cars.json
   def create
     @car = Car.new(car_params)
-
+    @car.user_id = current_user.id
     respond_to do |format|
       if @car.save
         format.html { redirect_to car_url(@car), notice: "Car was successfully created." }
@@ -69,6 +106,6 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:brand, :model, :BHP, :mileage, :starting_price, :image, :user_id)
+      params.require(:car).permit(:brand, :model, :BHP, :mileage, :starting_price, :image, :user_id, :picture)
     end
 end
