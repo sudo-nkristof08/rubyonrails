@@ -1,19 +1,18 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  brand: MyString
-  model: MyString
+  brand: "Toyota"
+  model: "Avensis"
   BHP: 1
   mileage: 1
   starting_price: 1
-  image: MyString
+  image: "placeholder.jpeg"
   user: one
 
 two:
-  brand: MyString
-  model: MyString
+  brand: "Ford"
+  model: "Focus"
   BHP: 1
   mileage: 1
   starting_price: 1
-  image: MyString
+  image: "placeholder.jpeg"
   user: two

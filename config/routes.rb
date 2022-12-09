@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   #resources :cars
 
   
-  get 'users/:id/bids', to: 'users#view_bids'
-  get 'users/:id/cars', to: 'users#view_cars'
+  get 'users/:id/bids', to: 'users#view_bids', as: 'showBids'
+  get 'users/:id/cars', to: 'users#view_cars', as: 'showCars'
   
-  post 'cars/:id', to: 'cars#create_bid'
+  post 'cars/:id', to: 'cars#create_bid', as: 'createBid'
   
   root "cars#index"
   

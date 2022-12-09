@@ -41,6 +41,8 @@ class CarsController < ApplicationController
   		respond_to do |format|
   			format.html { redirect_to url }
   		end
+  	else
+  		return
   	end
   	
   		
@@ -90,6 +92,13 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
+    
+    @bids = Bid.where(car_id: @car.id).order("amount DESC")
+    
+    if (!@bids.empty?)
+    	head 403
+    	return 
+    end
     @car.destroy
 
     respond_to do |format|

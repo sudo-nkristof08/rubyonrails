@@ -1,8 +1,10 @@
 require "test_helper"
 
+
 class CarsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @car = cars(:one)
+    sign_in User.first
   end
 
   test "should get index" do
@@ -28,21 +30,9 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_car_url(@car)
-    assert_response :success
-  end
-
   test "should update car" do
     patch car_url(@car), params: { car: { BHP: @car.BHP, brand: @car.brand, image: @car.image, mileage: @car.mileage, model: @car.model, starting_price: @car.starting_price, user_id: @car.user_id } }
     assert_redirected_to car_url(@car)
   end
 
-  test "should destroy car" do
-    assert_difference("Car.count", -1) do
-      delete car_url(@car)
-    end
-
-    assert_redirected_to cars_url
-  end
 end

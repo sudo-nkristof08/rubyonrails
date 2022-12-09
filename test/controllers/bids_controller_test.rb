@@ -3,11 +3,7 @@ require "test_helper"
 class BidsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @bid = bids(:one)
-  end
-
-  test "should get index" do
-    get bids_url
-    assert_response :success
+    sign_in User.first
   end
 
   test "should get new" do

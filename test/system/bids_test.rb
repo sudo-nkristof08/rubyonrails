@@ -3,6 +3,7 @@ require "application_system_test_case"
 class BidsTest < ApplicationSystemTestCase
   setup do
     @bid = bids(:one)
+    sign_in users(:one)
   end
 
   test "visiting the index" do
